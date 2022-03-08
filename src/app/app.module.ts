@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
 
-//nouveau composant créer
+//nouveau composant crée
 import { AssignmentsComponent } from './assignments/assignments.component';
 
 @NgModule({

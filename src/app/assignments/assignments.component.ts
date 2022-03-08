@@ -6,9 +6,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./assignments.component.css']
 })
 export class AssignmentsComponent implements OnInit {
+  titre = "Mon application sur les assignments";
+  assignments = [
+    {
+      nom : "Devoir angular de Mr Buffa",
+      dateDeRendu : '2022-03-28',
+      rendu : false
+    },
+    {
+      nom : "Devoir oracle de Mr Mopollo",
+      dateDeRendu : '2022-01-22',
+      rendu : true
+    },
+    {
+      nom : "Devoir grails de Mr Galli",
+      dateDeRendu : '2022-04-01',
+      rendu : false
+    },
+  ]
 
-  constructor() { }
-
+  //appelé après le constructeur et avant l'affichage du composant
   ngOnInit(): void {
   }
 

@@ -1,1 +1,5 @@
-<p>assignments works!</p>
+<h2>Liste des devoirs</h2>
+<p *ngFor="let a of assignments;let i=index">
+    {{i+1}} - {{a.nom}} ,date du rendu le {{a.dateDeRendu}}, rendu: {{a.rendu}}
+</p>
+
