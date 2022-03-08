@@ -1,5 +1,15 @@
 <h2>Liste des devoirs</h2>
-<p *ngFor="let a of assignments;let i=index">
-    {{i+1}} - {{a.nom}} ,date du rendu le {{a.dateDeRendu}}, rendu: {{a.rendu}}
-</p>
+<!-- affichage des assignments dont rendu = true en vert et false en rouge-->
+
+<div *ngFor="let a of assignments"
+  [ngStyle]="{'color':a.rendu?'green':'red'}"
+>
+  <p *ngIf="a.rendu;else nonsoumis">
+    Devoir intitulé {{a.nom}} a été rendu le {{a.dateDeRendu}}
+  </p>
+  <ng-template #nonsoumis>
+      Le devoir {{a.nom}} n'a pas été rendu, il est à rendre pour le {{a.dateDeRendu}}
+  </ng-template>
+</div>
+
 
