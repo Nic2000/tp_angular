@@ -8,9 +8,12 @@ import {Assignment} from "./assignment.model";
 })
 export class AssignmentsComponent implements OnInit {
   boutonInactif = false;
+  //?: ça peut être null
+  assignmentSelectionne ?: Assignment;
   //champ de formulaire != obligatoire
   nomAssignment!:string;
   dateDeRendu!:Date;
+
   titre = "Mon application sur les assignments";
   assignments:Assignment[] = [
     {
@@ -45,5 +48,8 @@ export class AssignmentsComponent implements OnInit {
   }
   formulaireSoumis(nom:string){
     console.log(nom);
+  }
+  assignmentClique(a:Assignment){
+    this.assignmentSelectionne = a;
   }
 }

@@ -1,4 +1,4 @@
-<h2>Liste des devoirs</h2>
+
 
 <!-- affichage des assignments dont rendu = true en vert et false en rouge-->
 <form ngForm #assignmentForm (submit)="onSubmit();assignmentForm.reset()" class="form">
@@ -17,16 +17,19 @@
   </button>
 </form>
 
-<div *ngFor="let a of assignments">
-  <p appRendu *ngIf="a.rendu;else nonsoumis" >
-    Devoir intitulé {{a.nom}} a été rendu le {{a.dateDeRendu}}
-  </p>
-  <ng-template #nonsoumis>
-    <p appAppNonRendu>Le devoir {{a.nom}} n'a pas été rendu, il est à rendre pour le {{a.dateDeRendu}}</p>
-  </ng-template>
-  <!--<p>
-    <button mat-raised-button color="warm" [disabled] = "boutonInactif" (click)="boutonCliquer(a)">Un bouton</button>
-  </p>-->
-</div>
+<h2>Liste des devoirs</h2>
+<mat-list *ngFor="let a of assignments">
+  <h3 mat-subheader>{{a.dateDeRendu | date : "dd/MM/yy"}}</h3>
+  <mat-list-item (click)="assignmentClique(a)">
+      <p appRendu *ngIf="a.rendu;else nonsoumis" >
+        Devoir intitulé {{a.nom}} a été rendu le {{a.dateDeRendu}}
+      </p>
+      <ng-template #nonsoumis>
+        <p appAppNonRendu>Le devoir {{a.nom}} n'a pas été rendu, il est à rendre pour le {{a.dateDeRendu}}</p>
+      </ng-template>
+  </mat-list-item>
+</mat-list>
+<h2 *ngIf="assignmentSelectionne">{{assignmentSelectionne.nom}}</h2>
+<app-assignment-detail [assignmentTransmis]="assignmentSelectionne"></app-assignment-detail>
 
 
