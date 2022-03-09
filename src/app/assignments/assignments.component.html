@@ -1,15 +1,32 @@
 <h2>Liste des devoirs</h2>
-<!-- affichage des assignments dont rendu = true en vert et false en rouge-->
 
-<div *ngFor="let a of assignments"
-  [ngStyle]="{'color':a.rendu?'green':'red'}"
->
-  <p *ngIf="a.rendu;else nonsoumis">
+<!-- affichage des assignments dont rendu = true en vert et false en rouge-->
+<form ngForm #assignmentForm (submit)="onSubmit();assignmentForm.reset()" class="form">
+  <mat-form-field>
+    <input matInput placeholder="Nom du devoir" [(ngModel)]="nomAssignment" name="nom">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="dateDeRendu" name="date">
+    <!--icone date-->
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <button mat-stroked-button color="primary">
+    Ajouter un devoir
+  </button>
+</form>
+
+<div *ngFor="let a of assignments">
+  <p appRendu *ngIf="a.rendu;else nonsoumis" >
     Devoir intitulé {{a.nom}} a été rendu le {{a.dateDeRendu}}
   </p>
   <ng-template #nonsoumis>
-      Le devoir {{a.nom}} n'a pas été rendu, il est à rendre pour le {{a.dateDeRendu}}
+    <p appAppNonRendu>Le devoir {{a.nom}} n'a pas été rendu, il est à rendre pour le {{a.dateDeRendu}}</p>
   </ng-template>
+  <!--<p>
+    <button mat-raised-button color="warm" [disabled] = "boutonInactif" (click)="boutonCliquer(a)">Un bouton</button>
+  </p>-->
 </div>
 
 
