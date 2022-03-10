@@ -12,5 +12,10 @@ export class AssignmentDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  //changer la propriéte d'un devoir non rendu à rendu
+  onAssignmentRendu(){
+    if(this.assignmentTransmis)
+      this.assignmentTransmis.rendu = true;
+  }
 
 }

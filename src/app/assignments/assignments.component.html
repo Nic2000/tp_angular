@@ -1,35 +1,24 @@
 
 
 <!-- affichage des assignments dont rendu = true en vert et false en rouge-->
-<form ngForm #assignmentForm (submit)="onSubmit();assignmentForm.reset()" class="form">
-  <mat-form-field>
-    <input matInput placeholder="Nom du devoir" [(ngModel)]="nomAssignment" name="nom">
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="dateDeRendu" name="date">
-    <!--icone date-->
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <button mat-stroked-button color="primary">
-    Ajouter un devoir
-  </button>
-</form>
-
-<h2>Liste des devoirs</h2>
-<mat-list *ngFor="let a of assignments">
-  <h3 mat-subheader>{{a.dateDeRendu | date : "dd/MM/yy"}}</h3>
-  <mat-list-item (click)="assignmentClique(a)">
-      <p appRendu *ngIf="a.rendu;else nonsoumis" >
-        Devoir intitulé {{a.nom}} a été rendu le {{a.dateDeRendu}}
-      </p>
-      <ng-template #nonsoumis>
-        <p appAppNonRendu>Le devoir {{a.nom}} n'a pas été rendu, il est à rendre pour le {{a.dateDeRendu}}</p>
-      </ng-template>
-  </mat-list-item>
-</mat-list>
-<h2 *ngIf="assignmentSelectionne">{{assignmentSelectionne.nom}}</h2>
-<app-assignment-detail [assignmentTransmis]="assignmentSelectionne"></app-assignment-detail>
-
+<!--on affiche le formulaire si formvisible = false-->
+<app-add-assignment *ngIf="formVisible"></app-add-assignment>
+<button mat-flat-button color="accent" (click)="onAddAssignmentBtnClick()">Ajouter Assignment</button>
+<!--on affiche la liste si formvisible = false-->
+<main *ngIf="!formVisible">
+    <h2>Liste des devoirs</h2>
+    <mat-list *ngFor="let a of assignments">
+      <h3 mat-subheader>{{a.dateDeRendu | date : "dd/MM/yy"}}</h3>
+      <mat-list-item (click)="assignmentClique(a)">
+        <p appRendu *ngIf="a.rendu;else nonsoumis" >
+          Devoir intitulé {{a.nom}} a été rendu le {{a.dateDeRendu}}
+        </p>
+        <ng-template #nonsoumis>
+          <p appAppNonRendu>Le devoir {{a.nom}} n'a pas été rendu, il est à rendre pour le {{a.dateDeRendu}}</p>
+        </ng-template>
+      </mat-list-item>
+    </mat-list>
+    <h2 *ngIf="assignmentSelectionne">{{assignmentSelectionne.nom}}</h2>
+    <app-assignment-detail [assignmentTransmis]="assignmentSelectionne"></app-assignment-detail>
+</main>
 

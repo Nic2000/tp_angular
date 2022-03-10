@@ -10,9 +10,8 @@ export class AssignmentsComponent implements OnInit {
   boutonInactif = false;
   //?: ça peut être null
   assignmentSelectionne ?: Assignment;
-  //champ de formulaire != obligatoire
-  nomAssignment!:string;
-  dateDeRendu!:Date;
+
+  formVisible = false;
 
   titre = "Mon application sur les assignments";
   assignments:Assignment[] = [
@@ -37,19 +36,15 @@ export class AssignmentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
-    console.log('nom =' + this.nomAssignment + 'date de rendu =' + this.dateDeRendu);
-    let newAssignment = new Assignment();
-    newAssignment.nom = this.nomAssignment;
-    newAssignment.dateDeRendu = this.dateDeRendu;
-    newAssignment.rendu = false;
-    //on l'ajoute au tableau
-    this.assignments.push(newAssignment);
-  }
+
   formulaireSoumis(nom:string){
     console.log(nom);
   }
   assignmentClique(a:Assignment){
     this.assignmentSelectionne = a;
+  }
+
+  onAddAssignmentBtnClick() {
+      this.formVisible = true;
   }
 }
