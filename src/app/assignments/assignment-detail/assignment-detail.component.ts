@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input,Output, OnInit,EventEmitter} from '@angular/core';
 import {Assignment} from "../assignment.model";
 
 @Component({
@@ -8,6 +8,8 @@ import {Assignment} from "../assignment.model";
 })
 export class AssignmentDetailComponent implements OnInit {
   @Input() assignmentTransmis?:Assignment;
+    //on va utiliser un outpu() pour envoyer l'assignment créée au père
+  @Output() supprimerAssignment = new EventEmitter<Assignment>()
   constructor() { }
 
   ngOnInit(): void {
@@ -16,6 +18,10 @@ export class AssignmentDetailComponent implements OnInit {
   onAssignmentRendu(){
     if(this.assignmentTransmis)
       this.assignmentTransmis.rendu = true;
+  }
+  DeleteAssignment(){
+      this.supprimerAssignment.emit(this.assignmentTransmis);
+      this.assignmentTransmis = undefined;
   }
 
 }

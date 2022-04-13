@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Assignment} from "../assignment.model";
 
 @Component({
@@ -12,6 +12,8 @@ export class AddAssignmentComponent implements OnInit {
   dateDeRendu!:Date;
   private assignments: any;
 
+  //on va utiliser un outpu() pour envoyer l'assignment créée au père
+  @Output() nouvelAssignment = new EventEmitter<Assignment>()
   constructor() { }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class AddAssignmentComponent implements OnInit {
     newAssignment.dateDeRendu = this.dateDeRendu;
     newAssignment.rendu = false;
     //on l'ajoute au tableau
-    this.assignments.push(newAssignment);
+  //  this.assignments.push(newAssignment);
+    this.nouvelAssignment.emit(newAssignment);
   }
 }

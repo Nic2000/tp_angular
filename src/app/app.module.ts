@@ -17,27 +17,37 @@ import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
 import { AppNonRenduDirective } from './shared/app-non-rendu.directive';
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
+import {MatListModule} from "@angular/material/list";
+import {MatCardModule} from "@angular/material/card";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AssignmentsComponent,
     RenduDirective,
-    AppNonRenduDirective
+    AppNonRenduDirective,
+    AssignmentDetailComponent,
+    AddAssignmentComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatDividerModule,
-        FormsModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-      MatNativeDateModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatListModule,
+    MatCardModule,
+    MatCheckboxModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

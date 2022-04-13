@@ -47,4 +47,13 @@ export class AssignmentsComponent implements OnInit {
   onAddAssignmentBtnClick() {
       this.formVisible = true;
   }
+
+  onNouvelAssignment(event: Assignment) {
+    this.assignments.push(event);
+    this.formVisible= false;
+  }
+  onDeleteAssignment(event:Assignment){
+    const position = this.assignments.indexOf(event);
+    this.assignments.splice(position, 1);
+  }
 }
